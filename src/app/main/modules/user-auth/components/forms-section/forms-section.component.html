@@ -1,0 +1,95 @@
+<div class="flex flex-col bg-amber-50 text-black">
+  <div class="flex flex-col p-14 justify-between gap-y-6">
+    <h3 class="text-lg">Sign In</h3>
+
+    <form
+      [formGroup]="signIn"
+      (ngSubmit)="signInOnSubmit(signInForm)"
+      #signInForm="ngForm"
+      novalidate
+      class="flex flex-col gap-y-6"
+      id="signIn">
+      <div class="">
+        <label
+          for="username-input"
+          class="mb-2 text-sm font-medium"
+        >{{ "username" | uppercase }}</label
+        >
+        <input
+          type="text"
+          id="username-input"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-[#4F944F] "
+          formControlName="username"/>
+
+      </div>
+
+      <div class="">
+        <label
+          for="password-input"
+          class="mb-2 text-sm font-medium"
+        >{{ "password" | uppercase }}</label
+        >
+        <input
+          type="text"
+          id="password-input"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          formControlName="password"/>
+      </div>
+      <button class="bg-[#4F944F] text-white" [disabled]="signIn.invalid">{{"log In" | uppercase}}</button>
+    </form>
+
+  </div>
+  <div class="flex flex-col p-14 justify-between gap-y-6">
+    <h3 class="text-lg">Create Account</h3>
+
+    <form
+      [formGroup]="signUp"
+      (ngSubmit)="signUpOnSubmit(signUpForm)"
+      #signUpForm="ngForm"
+      novalidate
+      class="flex flex-col gap-y-3"
+      id="signUp">
+      <div class="">
+        <label
+          for="username-input_signup"
+          class="mb-2 block text-sm font-medium"
+        >{{ "username" | uppercase }}</label
+        >
+        <input
+          type="text"
+          id="username-input_signup"
+          class="sm:text-md block w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          formControlName="username" />
+      </div>
+      <div class="">
+        <label
+          for="password-input_signup"
+          class="mb-2 block text-sm font-medium">
+          {{ "password" | uppercase }}</label
+        >
+        <input
+          type="text"
+          id="password-input_signup"
+          class="sm:text-md block w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          formControlName="password" />
+      </div>
+      <div class="">
+        <label
+          for="rePass-input"
+          class="mb-2 block text-sm font-medium"
+        >{{ "repeat password" | uppercase }}</label
+        >
+        <input
+          type="text"
+          id="rePass-input"
+          class="sm:text-md block w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          formControlName="passwordConfirm" />
+        <div *ngIf="signUp.get('passwordConfirm').touched && signUpForm.hasError('notSamePassword')">
+          Passwords do not match.
+        </div>
+      </div>
+      <button class="bg-[#4F944F] text-white" [disabled]="signUp.invalid">{{"register" | uppercase}}</button>
+    </form>
+
+  </div>
+</div>

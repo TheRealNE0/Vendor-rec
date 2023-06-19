@@ -1,0 +1,12 @@
+<div class="flex flex-col mx-auto max-w-7xl my-24 gap-y-16 justify-center content-evenly h-full">
+  <h1 class="text-5xl text-center">Your Cart</h1>
+  <div class="flex gap-4">
+    <app-cart-details *ngIf="userCheckoutTable"
+                      class="basis-3/4"
+                      [checkoutList]="userCheckoutTable"
+                      (addCartItemEvent)="onClickCartItemAddHandler($event)"
+                      (subtractCartItemEvent)="onClickCartItemSubtractHandler($event)"
+                      (removeCartItemEvent)="onClickCartItemRemoveHandler($event)"></app-cart-details>
+    <app-cart-summary class="basis-1/4"></app-cart-summary>
+  </div>
+</div>

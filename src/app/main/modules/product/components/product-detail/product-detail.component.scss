@@ -1,0 +1,42 @@
+.color-circle {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.heart {
+  color: transparent;
+  text-shadow: 0 0 0 #c2c2c2
+}
+
+* > .fa.fa-hover-show,
+*:hover > .fa.fa-hover-hidden {
+  display: none !important;
+}
+
+*:hover > .fa.fa-hover-show {
+  display: inline-block !important;
+}
+
+.custom-control-input {
+  //visibility: hidden
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.custom-control-label {
+  cursor: pointer;
+  //display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+
+}
+
+input[type="radio"]:checked ~ label {
+  outline: 3px solid black !important;
+  //background-color: red;
+  //border: 1px solid black;
+}

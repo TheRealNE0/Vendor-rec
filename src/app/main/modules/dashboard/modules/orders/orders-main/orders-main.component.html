@@ -1,0 +1,22 @@
+<div class="flex flex-col text-black p-3 justify-between gap-y-6" *ngIf="(productImageTable | json) != '{}'">
+  <ng-container *ngFor="let orderItem of orderList">
+    <div class="grid grid-cols-12 border border-2 border-[#efefef]">
+      <div class="col-span-6 grid grid-cols-12 items-center gap-1 p-4">
+        <div class="col-span-3 flex justify-center items-center">Order ID: {{orderItem.id}}</div>
+        <div class="col-span-3 flex flex-col justify-center items-center">color:
+          <span class="color-circle"
+                [ngStyle]="{'background-color': orderItem.color}">
+          </span>
+        </div>
+        <div class="col-span-3 flex justify-center items-center" *ngIf="orderItem.size">size: {{orderItem.size}}</div>
+        <div class="col-span-3 flex justify-center items-center">quantity: {{orderItem.quantity}}</div>
+      </div>
+      <div class="col-span-6 flex justify-end">
+        <span class="contents">
+          <img class="max-w-[15%] object-cover" [src]="this.productImageTable[orderItem.productId]"
+               alt="notFound!">
+        </span>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,12 @@
+.heart{
+  color: transparent;
+  text-shadow: 0 0 0 #c2c2c2
+}
+* > .fa.fa-hover-show,
+*:hover > .fa.fa-hover-hidden {
+  display: none !important;
+}
+
+*:hover > .fa.fa-hover-show {
+  display: inline-block !important;
+}

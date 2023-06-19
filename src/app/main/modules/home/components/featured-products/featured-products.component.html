@@ -1,0 +1,46 @@
+<div class="mx-auto my-20 flex max-w-7xl flex-col gap-y-4">
+  <div class="flex justify-between">
+    <h2 class="text-4xl">Featured Products</h2>
+    <span class="space-x-4">
+      <button (click)="setView('BS')">Best Sellers</button>
+      <button (click)="setView('NA')">New Arrivals</button>
+    </span>
+  </div>
+
+  <div class="custom-grid-layout">
+    <ng-container *ngFor="let item of productList; index as i">
+
+      <ng-container *ngIf="i <= 6 && viewName === 'BS'">
+        <ng-template [ngTemplateOutlet]="product" [ngTemplateOutletContext]="{data:item}"></ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="7 <= i && i < 14 && viewName === 'NA'">
+        <ng-template [ngTemplateOutlet]="product" [ngTemplateOutletContext]="{data:item}"></ng-template>
+      </ng-container>
+
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #product let-item="data">
+  <div class="products flex basis-1 flex-col cursor-pointer" (click)="onClickProductImageHandler(item.id)">
+          <span class="w-100"
+          ><img src="{{ item.mainImage.uri }}" alt="not found 2"
+          /></span>
+    <!--  <span class="w-100"><img src="assets/images/asset 1.jpeg" alt="not found 2"></span>-->
+    <span class="flex justify-between">
+            <h5>{{ item.name }}</h5>
+
+            <span>
+              <i class="fa fa-heart text-[#C2C2C2FF] fa-hover-hidden"></i>
+              <i class="fa fa-heart text-[#4F944F] fa-hover-show"></i>
+            </span>
+
+      <!--     Favorite Button     -->
+          </span>
+    <span class="flex space-x-2">
+            <h5>${{ item.price }}</h5>
+            <button class="text-underline-animation-green">add to cart</button>
+          </span>
+  </div>
+</ng-template>

@@ -1,0 +1,14 @@
+<app-product-detail [productInfo]="product"
+                    [wishButtonFlag]="wishButtonFlag"
+                    [addToCartButtonFlag]="addToCartButtonFlag"
+                    [checkOutItemQuantity]="checkOutItemQuantity"
+                    (toggleWishListEvent)="onToggleWishListHandler()"
+                    (productAppearanceChangesEvent)="onAppearanceChangesEventHandler($event)"
+                    (addCartItemEvent) ="onClickCartItemAddHandler($event)"
+                    (subtractCartItemEvent)="onClickCartItemSubtractHandler($event)"
+*ngIf="product"
+>
+</app-product-detail>
+
+
+<app-suggestion-carousel></app-suggestion-carousel>

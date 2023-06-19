@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'swiper/swiper.css';
+@import 'swiper/swiper.min.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+@import 'ngx-toastr/toastr';
+
+
+body {
+  font-family: 'Mulish', sans-serif;
+}
+
+@mixin text-underline-animation($color) {
+  display: block;
+  position: relative;
+  width: fit-content;
+  color: $color;
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: $color;
+    transform-origin: bottom right;
+    transition: transform 0.35s ease-in;
+
+  }
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+}
+
+.text-underline-animation-white {
+  @include text-underline-animation(#ffffff)
+}
+
+.text-underline-animation-green {
+  @include text-underline-animation(#4F944F)
+}
+
+
+//.text-underline-animation {
+//  display: inline-block;
+//  position: relative;
+//  color: #b91c1c;
+//}
+//
+//.text-underline-animation:after {
+//  content: '';
+//  position: absolute;
+//  width: 100%;
+//  transform: scaleX(0);
+//  height: 2px;
+//  bottom: 0;
+//  left: 0;
+//  background-color: #b91c1c;
+//  transform-origin: bottom right;
+//  transition: transform 0.25s ease-out;
+//}
+//
+//.text-underline-animation:hover:after {
+//  transform: scaleX(1);
+//  transform-origin: bottom left;
+//}

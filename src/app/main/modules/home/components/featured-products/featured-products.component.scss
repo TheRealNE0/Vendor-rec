@@ -1,0 +1,54 @@
+.custom-grid-layout .products:nth-child(1){
+  grid-area: one;
+}
+
+.custom-grid-layout .products:nth-child(2){
+  grid-area: two;
+}
+
+.custom-grid-layout .products:nth-child(3){
+  grid-area: three;
+}
+
+.custom-grid-layout .products:nth-child(4){
+  grid-area: four;
+}
+
+.custom-grid-layout .products:nth-child(5){
+  grid-area: five;
+}
+
+.custom-grid-layout .products:nth-child(6){
+  grid-area: six;
+}
+
+.custom-grid-layout .products:nth-child(7){
+  grid-area: seven;
+}
+
+
+/*todo read more about grid, grid-area, grid-area-template and grid-gap*/
+.custom-grid-layout{
+  display: grid;
+  /*gap: 2rem;*/
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr 1fr;
+  /*grid-template-areas:*/
+  /*  "one two three three"*/
+  /*  "one two three three"*/
+  /*  "four five six seven";*/
+  grid-template-areas:
+    "one one one one two two two two three three three three"
+    "one one one one two two two two three three three three"
+    "four four four five five five six six six seven seven seven";
+}
+
+* > .fa.fa-hover-show,
+*:hover > .fa.fa-hover-hidden {
+  display: none !important;
+}
+
+*:hover > .fa.fa-hover-show {
+  display: inline-block !important;
+}

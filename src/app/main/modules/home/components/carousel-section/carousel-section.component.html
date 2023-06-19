@@ -1,0 +1,9 @@
+<div class="swiper secondSwiper my-20">
+  <div class="swiper-wrapper">
+    <ng-container *ngFor="let item of carouselImageList">
+      <div class="swiper-slide flex flex-col relative">
+        <img class="object-cover aspect-square w-full" src="{{item.uri}}" alt="notFound!">
+      </div>
+    </ng-container>
+  </div>
+</div>

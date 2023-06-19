@@ -1,0 +1,67 @@
+<div class="flex flex-col text-black p-14 justify-between gap-y-6">
+  <h3 class="text-lg">{{ "password" | uppercase }}</h3>
+
+  <form
+    *ngIf="profileForm"
+    [formGroup]="profileForm"
+    (ngSubmit)="profileFormOnSubmit(ProfileForm)"
+    #ProfileForm="ngForm"
+    novalidate
+    class="flex flex-col gap-y-6"
+    id="profile">
+
+    <div class="grid grid-cols-12 gap-3">
+
+      <div class="col-span-12">
+        <label
+          for="oldPass-input"
+          class="mb-2 block text-sm font-medium">
+          {{ "OLD PASSWORD" | uppercase }}</label
+        >
+        <input
+          type="text"
+          id="oldPass-input"
+          class="sm:text-md block w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          formControlName="oldPassword" />
+      </div>
+
+      <div class="col-span-6">
+        <label
+          for="newPass-input"
+          class="mb-2 block text-sm font-medium"
+        >{{ "NEW PASSWORD" | uppercase }}</label
+        >
+        <input
+          type="text"
+          id="newPass-input"
+          class="sm:text-md block w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          formControlName="password" />
+      </div>
+
+      <div class="col-span-6">
+        <label
+          for="rePass-input"
+          class="mb-2 block text-sm font-medium"
+        >{{ "repeat password" | uppercase }}</label
+        >
+        <input
+          type="text"
+          id="rePass-input"
+          class="sm:text-md block w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          formControlName="passwordConfirm" />
+
+      </div>
+
+      <div
+        class="col-span-6"
+        *ngIf="profileForm.get('passwordConfirm').touched && profileForm.hasError('notSamePassword')">
+        Passwords do not match.
+      </div>
+
+    </div>
+
+    <button class="bg-[#4F944F] text-white self-start py-4 px-8" [disabled]="profileForm.invalid">{{"Save Changes" | uppercase}}</button>
+
+  </form>
+</div>
+

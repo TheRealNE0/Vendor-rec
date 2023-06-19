@@ -1,0 +1,12 @@
+<div class="swiper firstSwiper ">
+  <div class="swiper-wrapper max-w-7xl">
+    <ng-container *ngFor="let item of sliderImageList">
+      <div class="swiper-slide relative">
+        <img class="object-cover h-4/5 scale-100 " src="{{item.image.uri}}" alt="notFound!">
+        <span class="text-5xl w-full h-full absolute top-0 left-0 bg-black opacity-60 text-white flex justify-center items-center">
+        {{item.title}}
+        </span>
+      </div>
+    </ng-container>
+  </div>
+</div>

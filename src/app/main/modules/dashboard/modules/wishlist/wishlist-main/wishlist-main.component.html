@@ -1,0 +1,25 @@
+<div class="grid grid-cols-12 text-black p-3 justify-between gap-8" *ngIf="productList">
+  <ng-container *ngFor="let product of productList">
+    <div class="col-span-4 flex flex-col cursor-pointer " (click)="onClickNavigateToProductHandler(product.id)">
+          <span class="w-full">
+            <img class="object-cover" src="{{ product.mainImage.uri }}" alt="not found!" />
+          </span>
+        <!--  <span class="w-100"><img src="assets/images/asset 1.jpeg" alt="not found 2"></span>-->
+        <span class="flex justify-between">
+            <h5>{{ product.name }}</h5>
+
+            <span>
+              <i class="fa fa-heart text-[#C2C2C2FF] fa-hover-hidden"></i>
+              <i class="fa fa-heart text-[#4F944F] fa-hover-show"></i>
+            </span>
+
+          <!--     Favorite Button     -->
+          </span>
+        <span class="flex space-x-2">
+            <h5>${{ product.price }}</h5>
+            <button class="text-underline-animation-green">add to cart</button>
+        </span>
+
+    </div>
+  </ng-container>
+</div>

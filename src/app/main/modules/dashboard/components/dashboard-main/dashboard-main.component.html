@@ -1,0 +1,23 @@
+<div class="h-64 bg-[#3B416B]">
+  <div class="mx-auto max-w-7xl h-full flex justify-between">
+    <h2 class="text-4xl text-white self-center tracking-widest">Hello {{this?.userInfo}}</h2>
+    <button (click)="signOut()"
+            class="text-white border border-2 border-white self-center p-2 hover:bg-white hover:text-[#3B416B]">SIGN OUT
+    </button>
+  </div>
+</div>
+
+<div class="flex mx-auto max-w-7xl my-14 gap-x-10">
+  <ol class="list-none bg-[#efefef] basis-1/4 self-start relative">
+    <li (click)="drawLavaBorder(button1,1)" [id]="1 === activeIndex ? 'active' : ''"   class="cursor-pointer pl-4 py-4" routerLink="profile" #button1>Profile</li>
+    <li (click)="drawLavaBorder(button2,2)" [id]="2 === activeIndex ? 'active' : ''"  class="cursor-pointer pl-4 py-4" routerLink="orders" #button2>Orders</li>
+    <li (click)="drawLavaBorder(button3,3)" [id]="3 === activeIndex ? 'active' : ''"  class="cursor-pointer pl-4 py-4" routerLink="addresses" #button3>Address</li>
+    <li (click)="drawLavaBorder(button4,4)" [id]="4 === activeIndex ? 'active' : ''"  class="cursor-pointer pl-4 py-4" routerLink="payments" #button4>Payments</li>
+    <li (click)="drawLavaBorder(button5,5)" [id]="5 === activeIndex ? 'active' : ''"  class="cursor-pointer pl-4 py-4" routerLink="wishlist" #button5>Wishlist</li>
+    <li class="border border-2 border-black absolute" #lavaBorder id="lavaBorder" ></li>
+  </ol>
+  <div class="flex basis-3/4">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

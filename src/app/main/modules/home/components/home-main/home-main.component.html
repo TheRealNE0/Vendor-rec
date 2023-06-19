@@ -1,0 +1,9 @@
+<app-first-section *ngIf="homeImageList" [sliderImageList]="homeImageList!.firstSection"></app-first-section>
+
+<app-featured-products *ngIf="productList" (productId)="onClickProductImageEventHandler($event)" [productList]="productList"></app-featured-products>
+
+<app-spring-collection  *ngIf="homeImageList" [collectionList]="homeImageList.spring17Collection"></app-spring-collection>
+
+<app-blog-post *ngIf="blogPostList" [blogPostList]="blogPostList"></app-blog-post>
+
+<app-carousel-section *ngIf="homeImageList" [carouselImageList]="homeImageList.carrouselSection"></app-carousel-section>

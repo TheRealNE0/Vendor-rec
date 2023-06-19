@@ -1,0 +1,17 @@
+.color-circle {
+  height: 15px;
+  width: 15px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.fadeout-test {
+  transform: translateX(0);
+}
+//
+//.fadeout-test:focus-within {
+//  transform: translateX(-500%);
+//  opacity: 0;
+//  transition: all 2s ease-in-out;
+//}

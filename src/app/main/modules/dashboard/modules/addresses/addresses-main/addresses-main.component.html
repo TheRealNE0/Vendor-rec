@@ -1,0 +1,85 @@
+<div class="flex flex-col text-black p-3 justify-between gap-y-6">
+  <!--    list of payments-->
+  <h3 class="text-lg">{{ "Addresses" | uppercase }}</h3>
+  <h5 class="text-sm">{{ addressList.length }} Entry</h5>
+  <div class="grid grid-cols-12 gap-4" *ngIf="addressList">
+    <div class="flex flex-col col-span-12 lg:col-span-6 border border-2 border-[#efefef] divide-y-2 divide-[#efefef]"
+         *ngFor="let addressCard of addressList; let cardNumber = index ">
+      <div class="flex justify-between ">
+        <span class="p-4">Address {{cardNumber + 1}}</span>
+        <button class="touch relative basis-[14%] bg-[#efefef] flex justify-center items-center hover:bg-[#efefef]">
+          <i class="fa-solid fa-ellipsis-vertical "></i>
+          <ul class="slide bg-[#efefef] cardDropdown divide-y-2 divide-black">
+            <li (click)="onClickEditCardHandler(addressCard.id)">Edit</li>
+            <li (click)="onClickDeleteCardHandler(addressCard.id)">Delete</li>
+          </ul>
+        </button>
+
+      </div>
+      <div class="flex flex-col p-4 space-y-4">
+        <div>
+          <h5 class="text-sm text-zinc-400 ">WHERE</h5>
+          <span>{{addressCard.destination.address+", "+addressCard.destination.city}}</span>
+        </div>
+        <div>
+          <h5 class="text-sm text-zinc-400 ">TO</h5>
+          <span>{{addressCard.receiverName}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="text-lg">New Address</h3>
+  <form
+    [formGroup]="addressesForm"
+    (ngSubmit)="onClickSubmitHandler()"
+    novalidate
+    class="flex flex-col gap-y-6"
+    id="address">
+
+    <div class="grid grid-cols-12 gap-x-3">
+
+      <div class="col-span-12">
+        <label
+          for="cardAddress"
+          class="mb-2 text-sm font-medium"
+        >ADDRESS</label>
+        <input
+          type="text"
+          id="cardAddress"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-[#4F944F] "
+          formControlName="address" />
+      </div>
+
+      <div class="col-span-12 lg:col-span-6">
+        <label
+          for="cardCity"
+          class="mb-2 text-sm font-medium"
+        >CITY</label>
+        <input
+          type="text"
+          id="cardCity"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-[#4F944F] "
+          formControlName="city" />
+      </div>
+
+      <div class="col-span-12 lg:col-span-6">
+        <label
+          for="cardReceiver"
+          class="mb-2 text-sm font-medium"
+        >TO</label>
+        <input
+          type="text"
+          id="cardReceiver"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-[#4F944F] "
+          formControlName="receiverName" />
+      </div>
+
+
+    </div>
+
+    <button class="bg-[#4F944F] text-white self-start py-4 px-8" [disabled]="addressesForm.invalid">ADD</button>
+    <!--    <button *ngIf="editFlag" class="bg-[#4F944F] text-white self-start py-4 px-8" [disabled]="paymentForm.invalid">EDIT</button>-->
+  </form>
+
+</div>

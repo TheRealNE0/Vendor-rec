@@ -1,0 +1,59 @@
+<nav
+  class="fixed w-full bg-black bg-opacity-90 transition-all duration-500 ease-in-out"
+  [ngClass]="
+    scrollDirectionStatus === 'DOWN'
+      ? 'origin-center -translate-y-16 bg-opacity-0'
+      : scrollDirectionStatus === 'UP'
+      ? 'translate-y-0 bg-opacity-90'
+      : 'bg-opacity-100'
+  "
+>
+  <div
+    class="mx-auto flex h-20 max-w-7xl items-center justify-between text-zinc-400"
+  >
+    <div class="space-x-3">
+      <span routerLink="/home" class="cursor-pointer relative hover:text-white"> Home </span>
+
+      <span class="dropdown relative hover:text-white">
+        Pages
+        <div class="dropdown-content text-black">
+          <a routerLink="/cart">Cart</a>
+          <a routerLink="/dashboard">Dashboard</a>
+          <a href="#">Link 1</a>
+          <a href="#">Link 1</a>
+          <a href="#">Link 1</a>
+        </div>
+      </span>
+
+      <span class="hover:text-white">Docs</span>
+    </div>
+
+    <div class="flex items-center justify-center">
+      <a routerLink="/home"><img class="object-cover" src="assets/logos/logo.svg" alt="notFound!" /></a>
+    </div>
+
+    <div class="flex content-center items-center justify-center gap-x-3">
+      <button *ngIf="loggedInUser === null ;else userInfo" routerLink="/user-auth" class="hover:text-white">log in</button>
+      <ng-template #userInfo>
+        <div class="flex justify-between items-center gap-4">
+          <span>Hello <a routerLink="/dashboard">{{loggedInUser?.username}}</a></span>
+          <button (click)="this.userService.logUserOut()" class="font-bold">logout</button>
+        </div>
+      </ng-template>
+      <button class="hover:text-white">
+        <i class="fa fa-thin fa-magnifying-glass"></i>
+      </button>
+
+      <button class="group flex items-center justify-center" *ngIf="loggedInUser" (click)="cartButtonClickHandler()">
+        <span
+          class="border-2 border-solid border-zinc-400 px-3 py-1 group-hover:border-amber-50 group-hover:text-white"
+          >cart</span
+        >
+        <span
+          class="border-2 border-zinc-400 border-solid px-3 py-1 group-hover:border-amber-50 group-hover:text-white"
+          >{{loggedInUser.checkOutList.length}}</span
+        >
+      </button>
+    </div>
+  </div>
+</nav>

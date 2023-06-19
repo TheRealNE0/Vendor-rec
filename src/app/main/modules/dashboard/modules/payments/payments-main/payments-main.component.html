@@ -1,0 +1,118 @@
+<div class="flex flex-col text-black p-3 justify-between gap-y-6">
+  <!--    list of payments-->
+  <h3 class="text-lg">{{ "payments" | uppercase }}</h3>
+  <div class="grid grid-cols-12 gap-4" *ngIf="paymentList">
+    <div class="flex flex-col col-span-12 lg:col-span-6 border border-2 border-[#efefef] divide-y-2 divide-[#efefef]"
+         *ngFor="let paymentCard of paymentList" #cardReference>
+      <div class="flex justify-between ">
+        <span class="p-4"> {{paymentCard.type}}</span>
+        <button class="touch relative basis-[14%] bg-[#efefef] flex justify-center items-center hover:bg-[#efefef]">
+          <i class="fa-solid fa-ellipsis-vertical "></i>
+          <ul class="slide bg-[#efefef] cardDropdown divide-y-2 divide-black">
+            <li (click)="onClickEditCardHandler(paymentCard.id)">Edit</li>
+            <li (click)="onClickDeleteCardHandler(paymentCard.id)">Delete</li>
+          </ul>
+        </button>
+
+      </div>
+      <div class="flex flex-col p-4 space-y-4">
+        <div>
+          <h5 class="text-sm text-zinc-400 ">CARD Number</h5>
+          <span>{{paymentCard.cardNumber}}</span>
+        </div>
+        <div>
+          <h5 class="text-sm text-zinc-400 ">CARD NAME</h5>
+          <span>{{paymentCard.name}}</span>
+        </div>
+        <div>
+          <h5 class="text-sm text-zinc-400">VALID THRU</h5>
+          <span>{{paymentCard.date.month}} / {{paymentCard.date.year}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="text-lg">{{ "New Payment Method" | uppercase }}</h3>
+  <form
+    [formGroup]="paymentForm"
+    (ngSubmit)="onClickSubmitHandler()"
+    novalidate
+    class="flex flex-col gap-y-6"
+    id="Payment">
+
+    <div class="grid grid-cols-12 gap-x-3">
+
+      <div class="col-span-12">
+        <label
+          for="cardNumber"
+          class="mb-2 text-sm font-medium"
+        >{{ "CARD NUMBER" | uppercase }}</label>
+        <input
+          type="text"
+          id="cardNumber"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-[#4F944F] "
+          formControlName="cardNumber" />
+      </div>
+
+      <div class="col-span-12 lg:col-span-6">
+        <label
+          for="cardName"
+          class="mb-2 text-sm font-medium"
+        >{{ "NAME ON CARD" | uppercase }}</label>
+        <input
+          type="text"
+          id="cardName"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-[#4F944F] "
+          formControlName="name" />
+      </div>
+
+      <div class="col-span-12 lg:col-span-3">
+        <label
+          for="cardDate-p1"
+          class="mb-2 text-sm font-medium"
+        >MONTH</label>
+        <select
+          id="cardDate-p1"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-[#4F944F]"
+          formControlName="month"
+        >
+          <option *ngFor="let temp of [1,2,3,4,5,6,7,8,9,10,11,12]" [ngValue]="temp">
+            {{ temp }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-span-12 lg:col-span-3">
+        <label
+          for="cardDate-p2"
+          class="mb-2 text-sm font-medium"
+        >YEAR</label>
+        <input
+          type="text"
+          id="cardDate-p2"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-[#4F944F] "
+          formControlName="year" />
+      </div>
+
+      <div class="col-span-12">
+        <label
+          for="cardType"
+          class="mb-2 text-sm font-medium"
+        >CARD TYPE</label>
+        <select
+          id="cardType"
+          class="sm:text-md w-full border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-[#4F944F]"
+          formControlName="type"
+        >
+          <option *ngFor="let cType of ['Visa','PayPal','MasterCard']" [ngValue]="cType">
+            {{ cType }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <button class="bg-[#4F944F] text-white self-start py-4 px-8" [disabled]="paymentForm.invalid">ADD</button>
+<!--    <button *ngIf="editFlag" class="bg-[#4F944F] text-white self-start py-4 px-8" [disabled]="paymentForm.invalid">EDIT</button>-->
+  </form>
+
+</div>

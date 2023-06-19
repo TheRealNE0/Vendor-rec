@@ -1,0 +1,121 @@
+<ng-container *ngIf="productInfo">
+  <div class="flex flex col bg-[#efefef]">
+    <div class="flex mx-auto max-w-7xl mt-20 mb-10">
+      <div class="basis-7/12">
+        FUCKKKKKKK SWIPER
+        <!--        <div class="swiper thirdSwiper">-->
+        <!--          <div class="swiper-wrapper overflow-hidden">-->
+        <!--            <div class="swiper-slide flex">-->
+        <!--              <img class="object-cover w-[25%]" src="{{productInfo.mainImage.uri}}" alt="notFound!">-->
+        <!--            </div>-->
+        <!--            <ng-container *ngFor="let otherImages of productInfo.images">-->
+        <!--              <div class="swiper-slide">-->
+        <!--                <img class="object-cover w-[25%]" src="{{otherImages.uri}}" alt="notFound!">-->
+        <!--              </div>-->
+        <!--            </ng-container>-->
+        <!--          </div>-->
+
+        <!--          <div class="swiper-button-prev"></div>-->
+        <!--          <div class="swiper-button-next"></div>-->
+        <!--        </div>-->
+      </div>
+
+      <div class="basis-5/12 flex flex-col gap-y-4">
+        <h2 class="text-4xl">{{productInfo.name}}</h2>
+
+        <div class="flex gap-4 justify-between">
+          <div>
+            <span [ngClass]="productInfo.discount !== 0 ? 'line-through text-zinc-400' : ''"
+                  class="">${{productInfo.price | number : '1.2-2'}}</span>
+            <span
+              *ngIf="productInfo.discount !== 0">&emsp;${{productInfo.price * (1 - productInfo.discount / 100 ) | number : '1.2-2'}}</span>
+          </div>
+          <span class="cursor-pointer" (click)="addToWishlistHandler()" *ngIf="wishButtonFlag !== null">
+              <i [ngClass]="wishButtonFlag ? 'fa-hover-hidden':'fa-hover-show'"
+                 class="fa fa-heart fa-2x text-[#C2C2C2FF]"></i>
+              <i [ngClass]="wishButtonFlag ? 'fa-hover-show':'fa-hover-hidden'"
+                 class="fa fa-heart fa-2x text-[#4F944F]"></i>
+          </span>
+        </div>
+
+        <p>{{productInfo.description}}</p>
+
+        <form [formGroup]="productForm" class="flex flex-col gap-y-8">
+          <div class="flex flex-col gap-y-2">
+            <h2 class="text-lg text-zinc-400">COLOR</h2>
+            <div class="self-start flex justify-center border border-2 border-zinc-400 divide-x-2 divide-zinc-400">
+              <ng-container *ngFor="let colorOption of productInfo.color; let index = index">
+
+                <div class="flex">
+                  <input id="color-{{index}}" type="radio" class="custom-control-input " value="{{colorOption}}"
+                         formControlName="color" [checked]="index === 0">
+                  <label class="custom-control-label p-4  w-full h-full flex justify-center items-center " for="color-{{index}}">
+                    <span class="color-circle" [ngStyle]="{'background-color': colorOption}"></span>
+                  </label>
+                </div>
+
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-y-2" *ngIf="productInfo.size">
+            <h2 class="text-lg text-zinc-400">SIZE</h2>
+            <div class="self-start grid grid-flow-col auto-cols-fr border border-2 border-zinc-400 divide-x-2 divide-zinc-400 ">
+
+              <ng-container *ngFor="let sizeOption of productInfo.size; let index = index">
+                <div class="flex justify-center items-center aspect-square">
+                  <input id="size-{{index}}" type="radio" class="custom-control-input" value="{{sizeOption}}"
+                         formControlName="size" [checked]="index === 0">
+                  <label class="custom-control-label w-full h-full flex justify-center items-center p-3" for="size-{{index}}">
+                    {{sizeOption}}
+                  </label>
+                </div>
+              </ng-container>
+
+            </div>
+          </div>
+
+          <button class="bg-[#4F944F] text-white self-center p-4" (click)="onClickSubmitHandler()"
+                  type="submit" *ngIf="this.isAddToCartButtonVisible && this.checkOutItemQuantity === 0" >
+            ADD TO CART
+          </button>
+
+          <div *ngIf="this.checkOutItemQuantity !== 0" class="self-start flex gap-4 justify-center items-center content-center">
+            <button class="p-2.5 border border-black aspect-square flex justify-center items-center" type="button"
+                    (click)="onClickSubtractHandler()">-</button>
+
+            <span>{{this.checkOutItemQuantity}}</span>
+            <button class="p-2.5 border border-black aspect-square flex justify-center items-center" type="button"
+                    (click)="onClickAddHandler()">+</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <div class="flex mx-auto max-w-7xl my-20 gap-4">
+    <div class="basis-1/6 flex flex-col justify-center">
+      <h2 class="text-6xl text-center">{{productInfo.reviewNumber}}</h2>
+      <button>VIEW REVIEWS</button>
+    </div>
+    <div class="basis-4/6">
+      <p>{{productInfo.description}}</p>
+    </div>
+    <div class="basis-2/6 flex flex-col divide-y-2 divide-zinc-400">
+      <div class="flex justify-between">
+        <span>SKU</span>
+        <span>1421354</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Category[id]</span>
+        <span>{{productInfo.categoryId}}</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Tags</span>
+        <span>NO TAGS SETS</span>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

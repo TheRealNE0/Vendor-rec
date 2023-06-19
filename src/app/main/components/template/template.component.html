@@ -1,0 +1,39 @@
+<div class="relative flex flex-col " [ngClass]="{'overflow-hidden' : isCartButtonClicked }">
+  <app-navbar
+    [loggedInUser]="loggedInUser"
+    (cartButtonOnClickEventHandler)="cartButtonOnClickHandler()" class="absolute top-0 left-0 z-50 w-full"></app-navbar>
+
+  <router-outlet></router-outlet>
+
+  <app-footer></app-footer>
+
+  <div *ngIf="isCartButtonClicked " class="overlay-container grid grid-cols-4">
+    <div class="col-span-3"></div>
+    <div class="col-span-1 bg-white flex flex-col p-2 gap-4" *ngIf="loggedInUser">
+      <button class="bg-black text-white grid auto-rows-fr" (click)="cartCloseOnClickHandler()">Close</button>
+      <ng-container *ngFor="let item of sidebarList">
+        <div class="col-span-1 flex justify-between ">
+          <div class="flex gap-2.5">
+            <div>
+              <img class="object-cover max-w-[100%]" src="{{item.thumbnailImage.uri}}"
+                   alt="notfound!" height="100" width="100">
+            </div>
+            <div class="flex flex-col justify-center gap-2">
+              <span>{{item.productName}}</span>
+              <span class="color-circle" [ngStyle]="{'background-color': item.color}"></span>
+              <span *ngIf="item.size">{{item.size}}</span>
+            </div>
+          </div>
+
+          <div class="flex justify-center items-center">
+            <button
+              class="p-3.5 bg-[#efefef] rounded-full aspect-square grow flex justify-center items-center hover:bg-gray-400"
+              type="button"
+              (click)="onClickRemoveHandler(item.id)">×
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
